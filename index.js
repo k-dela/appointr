@@ -7,4 +7,6 @@ app.get('/', (req,res) => {
     res.send('sup for good');
 });
 
+
+
 app.listen(PORT, () => console.log('running on', PORT));

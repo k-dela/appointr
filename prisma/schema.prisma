@@ -8,15 +8,31 @@ datasource db {
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
-  email    String @unique
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
   password String
+  username String  @unique @db.VarChar(60)
+  Event    Event[]
 }
 
 model Session {
   id        String   @id
   sid       String   @unique
   data      String
-  expiresAt   DateTime
+  expiresAt DateTime
 }
 
+model Event {
+  id          Int              @id @default(autoincrement())
+  name        String
+  location    type_of_location
+  description String
+  link        String           @unique
+  host        Int
+  User        User             @relation(fields: [host], references: [id], onDelete: NoAction, onUpdate: NoAction)
+}
+
+enum type_of_location {
+  virtual
+  in_person
+}

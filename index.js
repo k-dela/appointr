@@ -15,6 +15,7 @@ app.use(session(SESSION_OPTS))
 // APP routers 
 const authRoutes = require('./routes/authRoutes');
 const homeRoutes = require('./routes/homeRoutes');
+const eventRoutes = require('./routes/eventRoutes');
 
 // APP middleware
 const authMiddleware = require('./middleware/auth');
@@ -36,6 +37,7 @@ app.use((req,res,next) => {
 // });
 
 app.use(authRoutes);
-app.use(homeRoutes)
+app.use(homeRoutes);
+app.use('/event', eventRoutes);
 
 app.listen(PORT, () => console.log('running on', PORT));

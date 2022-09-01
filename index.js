@@ -14,9 +14,11 @@ app.use(session(SESSION_OPTS))
 
 // APP routers 
 const authRoutes = require('./routes/authRoutes');
+const homeRoutes = require('./routes/homeRoutes');
 
 // APP middleware
 const authMiddleware = require('./middleware/auth');
+
 
 app.set('view engine', 'ejs');
 
@@ -25,12 +27,15 @@ app.use((req,res,next) => {
     next()
 });
 
-app.get('/', authMiddleware, (req,res) => {
-    console.log(req.session.user);
-    const {user} = req.session;
-    res.render('home', {user});
-});
+// I will put a landing page on this route
+
+// app.get('/', authMiddleware, (req,res) => {
+//     console.log(req.session.user);
+//     const {user} = req.session;
+//     res.render('home', {user});
+// });
 
 app.use(authRoutes);
+app.use(homeRoutes)
 
 app.listen(PORT, () => console.log('running on', PORT));

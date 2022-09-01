@@ -8,5 +8,39 @@
 </head>
 <body>
     <h1>This will be a form to create a new event</h1>
+
+    <form action="/events">
+        <div>
+            <label for="eventName">Event name:</label>
+            <input type="text" name="eventName" required placeholder="A very important meetin...">
+        </div>
+        <div>
+            <label for="location">Location:</label>
+            <select name="location" required>
+                <option value="">Add a location</option>
+                <option value="in-person">In person</option>
+                <option value="virtual">Virtual</option>
+            </select>
+        </div>
+        <div>
+            <label for="address">Address:</label>
+            <input type="text" required placeholder="Negra Arroyo Lane, 368, ABQ">
+        </div>
+        <div>
+            <label for="description">Description / Instructions: </label>
+            <textarea name="description" id="" cols="30" rows="10" placeholder="Write any details your invitee should know about the event" required></textarea>
+        </div>
+        <div>
+            <label for="link">Link:</label>
+            <input type="text" name="link" required>
+        </div>
+        <div>
+            <button>Create meetin</button>
+        </div>
+    </form>
+
+    <script>
+        
+    </script>
 </body>
 </html>

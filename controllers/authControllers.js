@@ -1,7 +1,7 @@
 const db = require('../prisma/db');
 const {isEmail} = require('validator');
 const bcrypt =  require('bcryptjs');
-const { generateFromEmail} = require("unique-username-generator");
+const usernameGenerator = require("unique-username-generator");
 
 
 module.exports.indexSignup = (req,res) => {
@@ -28,7 +28,7 @@ module.exports.createUser = async (req,res) => {
 
         password = await bcrypt.hash(password, 12);
 
-        const userName = generateFromEmail(email, 3);
+        const userName = usernameGenerator.generateFromEmail(email, 3);
 
         const newUser = await db.user.create({
             data: {

@@ -73,7 +73,7 @@ module.exports.loginUser = async (req,res) => {
             email: userInDb.email
         };
 
-        return res.redirect('/')
+        return res.redirect('/me')
 
     }catch(error){
         console.error(error);

@@ -15,6 +15,9 @@ app.use(session(SESSION_OPTS))
 // APP routers 
 const authRoutes = require('./routes/authRoutes');
 
+// APP middleware
+const authMiddleware = require('./middleware/auth');
+
 app.set('view engine', 'ejs');
 
 app.use((req,res,next) => {
@@ -22,8 +25,10 @@ app.use((req,res,next) => {
     next()
 });
 
-app.get('/', (req,res) => {
-    res.render('home')
+app.get('/', authMiddleware, (req,res) => {
+    console.log(req.session.user);
+    const {user} = req.session;
+    res.render('home', {user});
 });
 
 app.use(authRoutes);

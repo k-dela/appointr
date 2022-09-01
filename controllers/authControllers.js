@@ -63,7 +63,9 @@ module.exports.loginUser = async (req,res) => {
         const isValid = await bcrypt.compare(password, userInDb.password);
         if(!isValid) return res.status(400).json({message: 'Invalid credentials'});
 
-        
+        req.session.user = userInDb.id;
+
+        return res.redirect('/')
 
     }catch(error){
         console.error(error);

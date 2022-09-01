@@ -17,8 +17,13 @@ const authRoutes = require('./routes/authRoutes');
 
 app.set('view engine', 'ejs');
 
+app.use((req,res,next) => {
+    console.log(req.method, req.url, req.session);
+    next()
+});
+
 app.get('/', (req,res) => {
-    res.send('sup for good');
+    res.render('home')
 });
 
 app.use(authRoutes);

@@ -3,8 +3,6 @@ const {PrismaSessionStore} = require('@quixo3/prisma-session-store');
 const db = require('./prisma/db');
 const ONE_DAY_IN_MS = 60 * 60 * 1000 * 24;
 
-console.log('secret', process.env.SESSION_SECRET);
-
 const SESSION_OPTS = {
     cookie: {
         httpOnly: true,

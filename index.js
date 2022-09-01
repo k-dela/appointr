@@ -38,6 +38,6 @@ app.use((req,res,next) => {
 
 app.use(authRoutes);
 app.use(homeRoutes);
-app.use('/event', eventRoutes);
+app.use('/events', eventRoutes);
 
 app.listen(PORT, () => console.log('running on', PORT));

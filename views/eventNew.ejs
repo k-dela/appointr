@@ -35,6 +35,15 @@
             <p>appointr.com/<%= username %>/</p>
             <input type="text" name="slug" required placeholder="examplelink" pattern="^[a-z0-9_-]*$">
         </div>
+        <p>Date range for this event:</p>
+        <div>
+            <label for="star-date-range">Start date:</label>
+            <input type="date" value=<%= currentDate %> min=<%= currentDate %>>
+        </div>
+        <div>
+            <label for="end-date-range">End date:</label>
+            <input type="date" value=<%= currentDate %> min=<%= currentDate %>>
+        </div>
         <div>
             <button>Create meetin</button>
         </div>

@@ -13,7 +13,8 @@ const eventSchema = Joi.object({
 
 module.exports.new = (req,res) => {
     const {username} = req.session.user;
-    res.render('eventNew', {username});
+    const currentDate = new Date().toISOString().slice(0,10);
+    res.render('eventNew', {username, currentDate});
 };
 
 module.exports.create = async (req,res) => {

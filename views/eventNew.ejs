@@ -11,8 +11,8 @@
 
     <form action="/events" method="post">
         <div>
-            <label for="eventName">Event name:</label>
-            <input type="text" name="eventName" required placeholder="A very important meetin...">
+            <label for="name">Event name:</label>
+            <input type="text" name="name" required placeholder="A very important meetin...">
         </div>
         <div>
             <label for="location">Location:</label>
@@ -32,7 +32,8 @@
         </div>
         <div>
             <label for="slug">Link:</label>
-            <input type="text" name="slug" required>
+            <p>appointr.com/<%= username %>/</p>
+            <input type="text" name="slug" required placeholder="examplelink">
         </div>
         <div>
             <button>Create meetin</button>

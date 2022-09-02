@@ -6,21 +6,19 @@ const eventSchema = Joi.object({
     name: Joi.string().min(2).max(40),
     location: Joi.string().valid('virtual', 'in_person'),
     description: Joi.string(),
-    link: Joi.string(),
+    slug: Joi.string().min(1).max(100),
     host: Joi.number().integer().positive()
 });
 
 module.exports.new = (req,res) => {
-    res.render('eventNew');
+    const {username} = req.session.user;
+    res.render('eventNew', {username});
 };
 
 module.exports.create = async (req,res) => {
     console.log(req.body);
     let {username, id} = req.session.user;
-    let {eventName: name, location, description, slug} = req.body;
-
-    // Hard coded for now
-    const link = `localhost:3000/${username}/${slug}`;
+    let {name, location, description, slug} = req.body;
 
     let host = Number(id);
 
@@ -28,26 +26,26 @@ module.exports.create = async (req,res) => {
         name,
         location,
         description,
-        link,
+        slug,
         host
     });
 
     console.log(error, value);
 
 
-    // try{
-    //     const newEvent = await db.event.create({
-    //         data: {
-    //             name: eventName,
-    //             location,
-    //             description,
-    //             link,
-    //             host: Number(id)
-    //         }
-    //     });
+    try{
+        const newEvent = await db.event.create({
+            data: {
+                name,
+                location,
+                description,
+                link,
+                host: Number(id)
+            }
+        });
 
-    //     console.log(newEvent);
-    // }catch(error){
-    //     console.error(error);
-    // }
+        console.log(newEvent);
+    }catch(error){
+        console.error('this ran', error.message);
+    }
 }

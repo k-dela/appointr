@@ -37,13 +37,24 @@
         </div>
         <p>Date range for this event:</p>
         <div>
-            <label for="star-date-range">Start date:</label>
-            <input type="date" value=<%= currentDate %> min=<%= currentDate %>>
+            <label for="startDateRange">Start date:</label>
+            <input name="startDateRange" type="date" value=<%= currentDate %> min=<%= currentDate %>>
         </div>
         <div>
-            <label for="end-date-range">End date:</label>
-            <input type="date" value=<%= currentDate %> min=<%= currentDate %>>
+            <label for="endDateRange">End date:</label>
+            <input name="endDateRange" type="date" value=<%= currentDate %> min=<%= currentDate %>>
         </div>
+        <div>
+            <label for="duration">Duration:</label>
+            <input type="number" required name="duration">
+            
+            <select name="timeUnit">
+                <option value="min">min</option>
+                <option value="hrs">hrs</option>
+            </select>
+        </div>
+
+
         <div>
             <button>Create meetin</button>
         </div>

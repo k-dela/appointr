@@ -70,7 +70,7 @@ module.exports.loginUser = async (req,res) => {
 
         req.session.user ={
             id: userInDb.id,
-            email: userInDb.email
+            username: userInDb.username
         };
 
         return res.redirect('/me')

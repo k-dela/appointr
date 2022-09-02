@@ -16,13 +16,13 @@
         </div>
         <div>
             <label for="location">Location:</label>
-            <select name="location" required>
+            <select name="location" required id="location-input">
                 <option value="">Add a location</option>
                 <option value="in_person">In person</option>
                 <option value="virtual">Virtual</option>
             </select>
         </div>
-        <div>
+        <div id="address" style="visibility: hidden;">
             <label for="address">Address:</label>
             <input type="text" required placeholder="Negra Arroyo Lane, 368, ABQ">
         </div>
@@ -41,7 +41,17 @@
     </form>
 
     <script>
-        
+        let locationInput = document.querySelector('#location-input');
+        let addressContainer = document.querySelector('#address');
+ 
+        locationInput.addEventListener('input', () => {
+            if(locationInput.value === 'in_person'){
+                addressContainer.style.visibility = 'visible';
+            }else{
+                addressContainer.style.visibility = 'hidden';
+            }
+        })
+
     </script>
 </body>
 </html>

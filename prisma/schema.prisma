@@ -29,6 +29,7 @@ model Event {
   description String
   host        Int
   slug        String           @unique @db.VarChar(100)
+  address     String?
   User        User             @relation(fields: [host], references: [id], onDelete: NoAction, onUpdate: NoAction)
 }
 

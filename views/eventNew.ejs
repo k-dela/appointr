@@ -24,7 +24,7 @@
         </div>
         <div id="address" style="visibility: hidden;">
             <label for="address">Address:</label>
-            <input type="text" required placeholder="Negra Arroyo Lane, 368, ABQ">
+            <input type="text"  placeholder="Negra Arroyo Lane, 368, ABQ" name="address">
         </div>
         <div>
             <label for="description">Description / Instructions: </label>
@@ -33,7 +33,7 @@
         <div>
             <label for="slug">Link:</label>
             <p>appointr.com/<%= username %>/</p>
-            <input type="text" name="slug" required placeholder="examplelink">
+            <input type="text" name="slug" required placeholder="examplelink" pattern="^[a-z0-9_-]*$">
         </div>
         <div>
             <button>Create meetin</button>

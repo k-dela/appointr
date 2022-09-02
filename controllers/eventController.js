@@ -3,10 +3,11 @@ const db = require('../prisma/db');
 // Data validation 
 const Joi = require('joi');
 const eventSchema = Joi.object({
-    name: Joi.string().min(2).max(40),
-    location: Joi.string().valid('virtual', 'in_person'),
+    name: Joi.string().min(2).max(40).required(),
+    location: Joi.string().valid('virtual', 'in_person').required(),
     description: Joi.string(),
-    slug: Joi.string().min(1).max(100),
+    slug: Joi.string().min(1).max(100).pattern(/^[a-z0-9_-]*$/).lowercase().required(),
+    address: Joi.string().when('location', {is: 'in_person', then: Joi.required()}),
     host: Joi.number().integer().positive()
 });
 
@@ -18,7 +19,7 @@ module.exports.new = (req,res) => {
 module.exports.create = async (req,res) => {
     console.log(req.body);
     let {username, id} = req.session.user;
-    let {name, location, description, slug} = req.body;
+    let {name, location, description, slug, address} = req.body;
 
     let host = Number(id);
 
@@ -27,10 +28,15 @@ module.exports.create = async (req,res) => {
         location,
         description,
         slug,
-        host
+        host,
+        address
     });
 
     console.log(error, value);
+    if(error){
+        console.log(error);
+        return;
+    }
 
 
     try{
@@ -39,8 +45,9 @@ module.exports.create = async (req,res) => {
                 name,
                 location,
                 description,
-                link,
-                host: Number(id)
+                slug,
+                host: Number(id),
+                address
             }
         });
 
